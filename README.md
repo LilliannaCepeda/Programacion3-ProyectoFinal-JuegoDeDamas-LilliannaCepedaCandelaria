@@ -3,8 +3,10 @@
 **Estudiante:**
 Lillianna Cepeda Candelaria 
 
+
 **Matricula:**
 10005856
+
 
 **Descripcion de juego:**
 El juego de damas se trata de ir capturando fichas moviendose a lo largo de un tablero 8x8 de forma diagonal. Este juego se juega de dos jugadores, y se gana cuando uno de los dos jugaores a capturado todas las fichas del oponente o cuando el oponente no puede realizar ningun movimiento legal.
