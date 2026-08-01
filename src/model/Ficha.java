@@ -2,7 +2,7 @@ package model;
 
 public class Ficha {
 
-    private Color color;
+    private final Color color;
     private boolean esDama;
     private int fila;
     private int columna;
@@ -11,7 +11,7 @@ public class Ficha {
         this.color = color;
         this.fila = fila;
         this.columna = columna;
-
+        this.esDama = false;
     }
 
     public Color getColor(){
@@ -30,5 +30,20 @@ public class Ficha {
         return columna;
     }
 
+    public void setEsDama(boolean esDama){
+        this.esDama = esDama;
+    }
+
+    public void setFila(int fila){
+        this.fila = fila;
+    }
+
+    public void setColumna(int columna){
+        this.columna = columna;
+    }
+
+    public void promoverADama() {
+    this.esDama = true;
+}
     
 }
