@@ -22,6 +22,11 @@ public class Tablero {
         return colorArriba;
     }
 
+    //metodo para probar posiblemente se elimine
+    public void setFicha(int fila, int columna, Ficha ficha) {
+    casillas[fila][columna] = ficha;
+}
+
     public void initializarTablero(Color colorJugador1){
 
         Color colorJugador2;
@@ -43,7 +48,6 @@ public class Tablero {
 
         for(int fila = 5; fila <= 7; fila ++ ){
             for(int columna = 0; columna <= 7; columna++){
-
                 if((fila + columna) % 2 != 0){
                     casillas[fila][columna] = new Ficha(colorJugador2, fila, columna);
                 }
