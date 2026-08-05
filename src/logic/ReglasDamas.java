@@ -3,8 +3,6 @@ package logic;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.lang.model.util.Elements.Origin;
-
 import model.Color;
 import model.Ficha;
 import model.Movimiento;
@@ -20,6 +18,10 @@ public class ReglasDamas {
         this.tablero = tablero;
         this.turnoActual = sortTurnoInicial();
 
+    }
+
+    public Color getTurnoActual(){
+        return turnoActual;
     }
 
     public Color sortTurnoInicial(){

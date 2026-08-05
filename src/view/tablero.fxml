@@ -1,7 +1,7 @@
 <?xml version = "1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?improt javafx.scene.layout.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
 
 <AnchorPane
@@ -13,7 +13,8 @@
     <VBox
         AnchorPane.topAnchor="20"
         AnchorPane.leftAnchor="20" 
-        spacing="5">
+        spacing="5"
+        styleClass="cuadroJugador">
         <Label fx:id = "colorJugadorArriba" text =""/>
         <Label fx:id="contadorJugadorArriba" text = "12"/>
     </VBox>
@@ -21,31 +22,33 @@
     <VBox
         AnchorPane.bottomAnchor="20"
         AnchorPane.rightAnchor = "20"
-        spacing = "5">
+        spacing = "5"
+        styleClass="cuadroJugador">
         <Label fx:id="colorJugadorAbajo" text=""/>
         <Label fx:id="contadorJugadorAbajo" text="12"/>
     </VBox>
 
-    <MenuBotton
-        fx:id= "menuOpciones" text="" AnchorPane.topPAnchor="20" AnchorPane.rightAnchor="20">
+    <MenuButton
+        fx:id= "menuOpciones" text="" AnchorPane.topAnchor="20" AnchorPane.rightAnchor="20">
         <graphic>
-            <imageView fitwidth = "30" fitheight="30">
+            <ImageView fitWidth = "30" fitHeight="30">
                 <image>
-                    <image url="@../imagenes/iconoEngranaje.webp"/>
+                    <Image url="@../Imagenes/IconoEngranaje.png"/>
                 </image>
-            </imageView>
+            </ImageView>
         </graphic>
         <items>
-            <MenuItem fx:id = "itemNuevaPartida" text="Nueva Partida" onAction = "#nuevaPartida"/>
-            <MenuItem fx:id ="itemSalir" text="Salir" onAction = "#salir"/>
+            <MenuItem fx:id = "itemNuevaPartida" text="Nueva Partida" />
+            <MenuItem fx:id ="itemSalir" text="Salir"/>
         </items>
-    </MenuBotton>
+    </MenuButton>
 
     <GridPane 
-    fx:id= "tablero" 
-    AnchorPane.topAnchor ="80" 
-    AnchorPane.bottomAnchor="80" 
-    AnchorPane.leftAnchor="150" 
-    AnchorPane.rightAnchor="150">
+        fx:id= "tableroGrid" 
+        AnchorPane.topAnchor ="100" 
+        AnchorPane.bottomAnchor="200" 
+        AnchorPane.leftAnchor="450" 
+        AnchorPane.rightAnchor="250">
     </GridPane>
+   
 </AnchorPane>

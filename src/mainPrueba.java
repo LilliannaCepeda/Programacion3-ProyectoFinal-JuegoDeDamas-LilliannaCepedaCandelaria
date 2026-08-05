@@ -1,4 +1,5 @@
 import model.Tablero;
+import utils.Navegacion;
 import model.Color;
 import model.Ficha;
 import model.Movimiento;
@@ -74,8 +75,7 @@ if (otraFichaNegra != null) {
     ArrayList<Movimiento> resultadoA2 = reglasA.capturaOMovimientoSimple(otraFichaNegra);
     System.out.println("Otra ficha SIN captura propia -> cantidad: " + resultadoA2.size());
 }
-
         
-        
+ 
     }
 }

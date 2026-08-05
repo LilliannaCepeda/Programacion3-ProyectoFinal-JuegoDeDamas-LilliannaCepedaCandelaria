@@ -1,4 +1,22 @@
 .root{
-    -fx-background-image: url("../Imagenes/Fondo.png");
+    -fx-background-image: url("../Imagenes/fondo.png");
     -fx-background-size: cover;
+}
+
+.cuadroJugador{
+    -fx-background-color: linear-gradient(to bottom, #3a3a3a, #000000);
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
+}
+
+.cuadroJugador .label{
+    -fx-text-fill: white;
+}
+
+.turno{
+    -fx-border-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 10, 0.3, 0, 0);
 }
