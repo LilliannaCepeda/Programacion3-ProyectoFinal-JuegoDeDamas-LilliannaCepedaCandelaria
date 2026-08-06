@@ -1,6 +1,13 @@
+
+
 .root{
     -fx-background-image: url("../Imagenes/fondo.png");
     -fx-background-size: cover;
+    -fx-background-position: center;
+}
+
+.capaFondo {
+    -fx-background-color: radial-gradient(center 50% 50%, radius 80%, transparent 20%, rgba(0, 0, 0, 0.6) 100%);
 }
 
 .cuadroJugador{
@@ -19,4 +26,90 @@
 .turno{
     -fx-border-color: white;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.5), 10, 0.3, 0, 0);
+}
+
+.fondoFinPartida{
+    -fx-backgrond-color:radial-gradient(center 50% 50%, radius 80%, #7a1f2b, #2b0a10);
+}
+
+.titulo{
+   -fx-font-family: 'Montserrat', 'Alegreya SC', 'Arial', sans-serif;
+    -fx-font-size: 80px;
+    -fx-font-weight: 900;
+    
+    -fx-fill: #2a1810;
+
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.9), 8, 0, 2, 4);
+}
+
+.botonEmpezar {
+
+   -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a1810;
+    
+    -fx-padding: 12 35 12 35;
+    -fx-background-radius: 8;
+    
+    -fx-background-color: linear-gradient(to bottom, #e5b35c 0%, #b88328 100%);
+    -fx-border-color: #fce7a1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+.botonSalir{
+
+    -fx-font-family: 'Montserrat', sans-serif;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2a1810;
+    
+    -fx-padding: 12 35 12 35;
+    -fx-background-radius: 8;
+    
+    -fx-background-color: linear-gradient(to bottom, #e5b35c 0%, #b88328 100%);
+    -fx-border-color: #fce7a1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+}
+
+.botonEmpezar:hover {
+    -fx-background-color: linear-gradient(to bottom, #fce7a1 0%, #c89333 100%);
+    -fx-cursor: hand;
+}
+
+.botonEmpezar:pressed {
+    -fx-background-color: linear-gradient(to bottom, #b88328 0%, #e5b35c 100%);
+    -fx-effect: innershadow(three-pass-box, rgba(0, 0, 0, 0.6), 5, 0, 0, 2);
+}
+
+.tituEleccion {
+    -fx-font-family: 'Montserrat', 'Arial', sans-serif;
+    -fx-font-size: 48px; 
+    -fx-font-weight: bold;
+    -fx-fill: linear-gradient(to bottom, #fce7a1 0%, #e5b35c 60%, #b88328 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.9), 10, 0, 0, 5);
+}
+
+.contenedorCaja {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.65), 35, 0, 0, 18);
+}
+
+.contenedorCaja:hover {
+    -fx-cursor: hand;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.85), 45, 0, 0, 25);
+}
+
+.contenedorCaja:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
 }

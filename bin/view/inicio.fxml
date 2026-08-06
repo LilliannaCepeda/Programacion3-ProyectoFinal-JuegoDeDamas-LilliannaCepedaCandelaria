@@ -3,4 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 
+<StackPane
+    xmlns="http://javafx.com/javafx/25"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller = "controller.InicioController"
+    stylesheets="@../styles/estilos.css"
+    styleClass="root">
+
+    <Pane styleClass="capaFondo" />
+
+    <VBox alignment="CENTER" spacing="50">
+
+        <Text text="CHECKERS" styleClass="titulo" />
+        <VBox alignment ="CENTER" spacing="10">
+            <Button text="Empezar Partida" onAction="#empezarPartida" styleClass="botonEmpezar"/>
+            <Button text="Salir" onAction="#salir" styleClass="botonSalir"/>
+        </VBox>
+    </VBox>
+</StackPane>

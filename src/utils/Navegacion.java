@@ -20,5 +20,13 @@ public class Navegacion {
         return loader.getController();
 
     }
+
+    public static void irANuevaPartida(Stage stage) throws IOException {
+        cambiarScene(stage, "/view/seleccionColor.fxml");
+    }
+
+    public static void irAInicio(Stage stage) throws IOException {
+        cambiarScene(stage, "/view/inicio.fxml");
+    }
     
 }

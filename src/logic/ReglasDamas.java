@@ -367,7 +367,7 @@ public class ReglasDamas {
             tablero.setFicha(filaCaptura,colCaptura, null);
         }
 
-        //promover a reina
+        //promover a Dama
         if(ficha.getColor() == tablero.getColorArriba()){
             if(filaDest == 7){
                 ficha.promoverADama();
@@ -410,7 +410,7 @@ public class ReglasDamas {
                     if(ficha.getColor() == Color.BLANCO){
                         cantBlancas = cantBlancas + 1;
 
-                        if(capturaOMovimientoSimple(ficha).size() > 0){
+                        if(movimientosSimple(ficha).size() > 0 || movimientoCaptura(ficha).size() > 0){
 
                             blancasConMovimiento = true;
                         }
@@ -418,7 +418,7 @@ public class ReglasDamas {
                     }else{
                         cantNegras = cantNegras + 1;
 
-                        if(capturaOMovimientoSimple(ficha).size() > 0){
+                        if(movimientosSimple(ficha).size() > 0 || movimientoCaptura(ficha).size()> 0){
 
                             negrasConMovimeinto = true;
                         }

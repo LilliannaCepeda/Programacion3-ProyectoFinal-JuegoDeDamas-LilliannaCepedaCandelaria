@@ -38,8 +38,8 @@
             </ImageView>
         </graphic>
         <items>
-            <MenuItem fx:id = "itemNuevaPartida" text="Nueva Partida" />
-            <MenuItem fx:id ="itemSalir" text="Salir"/>
+            <MenuItem fx:id = "itemNuevaPartida" text="Nueva Partida" onAction="#nuevaPartida"/>
+            <MenuItem fx:id ="itemSalir" text="Salir" onAction="#regresar"/>
         </items>
     </MenuButton>
 

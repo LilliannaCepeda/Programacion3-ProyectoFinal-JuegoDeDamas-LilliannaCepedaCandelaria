@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
@@ -8,16 +9,18 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import logic.ReglasDamas;
 import model.Color;
 import model.Ficha;
 import model.Movimiento;
 import model.Tablero;
+import utils.Navegacion;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.image.Image;
 
 public class TableroController {
@@ -56,7 +59,8 @@ public class TableroController {
     @FXML
     public void initialize(){
 
-         System.out.println("TableroController cargado");
+        System.out.println("TableroController cargado");
+        
     }
 
     public void inicializarTableroVisual(Color colorElegido){
@@ -66,6 +70,7 @@ public class TableroController {
 
         dibujarTablero();
         cargarFichas(); 
+        actulizarLabels();
     }
 
     private void dibujarTablero(){
@@ -112,15 +117,26 @@ public class TableroController {
 
                 if(ficha != null){
 
-                     ImageView imagen;
+                    ImageView imagen;
 
-                    if(ficha.getColor() == Color.NEGRO){
+                    if(ficha.getEsDama()){
+
+                        if(ficha.getColor() == Color.BLANCO){
+                            imagen = new ImageView(new Image("/Imagenes/fichas/FichaDamaBlanca.png"));
+
+                        }else{
+
+                        imagen = new ImageView(new Image("/Imagenes/fichas/FichaDamaNegra.png"));
+                        }
+
+                    }else  if(ficha.getColor() == Color.NEGRO){
 
                         imagen = new ImageView(new Image("/Imagenes/fichas/FichaNegra.png"));
                     }else{
 
                         imagen = new ImageView(new Image("/Imagenes/fichas/FichaBlanca.png"));
                     }
+
 
                     imagen.setFitWidth(80);
                     imagen.setFitHeight(80);
@@ -134,42 +150,29 @@ public class TableroController {
     private void seleccionarFicha(Ficha ficha){
         fichaSeleccionada = ficha;
         movimientoDisponible = reglas.capturaOMovimientoSimple(ficha);
-
-        System.out.println("Cantidad de movimientos disponibles: " + movimientoDisponible.size());        
  
         for(Movimiento m: movimientoDisponible){
             int filaDestino = m.getFilaDestino();
             int colDestino = m.getColDestino();
-            System.out.println("Resaltando: " + filaDestino + ", " + colDestino);
             casillasVisuales[filaDestino][colDestino].setStyle("-fx-background-color: linear-gradient(to bottom right, yellow, orange);");
         }
     }
 
     private void manejarClickCelda(int fila, int col){
-         System.out.println("Click detectado en: " + fila + ", " + col);
-       Ficha ficha = tablero.getFicha(fila, col);
-       System.out.println("Ficha en esa posición: " + ficha);
-       if(ficha != null){
-        System.out.println("Color de la ficha: " + ficha.getColor());
-        System.out.println("Turno actual: " + reglas.getTurnoActual());
-    }
 
-    System.out.println("fichaSeleccionada actual: " + fichaSeleccionada);
+       Ficha ficha = tablero.getFicha(fila, col);
 
        if(ficha != null && ficha.getColor()== reglas.getTurnoActual() && fichaSeleccionada == null){
-         System.out.println("Entrando a seleccionarFicha");
-        seleccionarFicha(ficha);
-       }else if(ficha != null && ficha.getColor() == reglas.getTurnoActual() && fichaSeleccionada != null){
-        System.out.println("Entrando a cambiar seleccion");
-        limpiarResaltado();
+        
         seleccionarFicha(ficha);
 
-       }else if(fichaSeleccionada != null){
-        System.out.println("Entrando a intentoMovimiento");
-        intentoMovimiento(fila, col);
-       }else {
-        System.out.println("No entro a ningun caso");
-    }
+       }else if(ficha != null && ficha.getColor() == reglas.getTurnoActual() && fichaSeleccionada != null){
+        limpiarResaltado();
+        seleccionarFicha(ficha);
+        }else if(ficha == null && fichaSeleccionada != null){
+            intentoMovimiento(fila, col);
+
+        }
     }
 
     
@@ -180,6 +183,7 @@ public class TableroController {
         for(Movimiento m: movimientoDisponible){
             if(m.getFilaDestino() == fila && m.getColDestino() == col){
                 movimientoSeleccionado = m;
+                
             }
         }
 
@@ -195,21 +199,23 @@ public class TableroController {
                 reglas.cambioDeTurno();
                 fichaSeleccionada = null;
                 movimientoDisponible= null;
+                finPartida();
             }
+
+            actulizarLabels();
         }
     }
 
+
     private void actualizarTablero(){
             
-            for(int i = 0; i < 8; i++){
-                for (int j =0; j < 8; j++){
-                    casillasVisuales[i][j].getChildren().clear();
-                }
+        for(int i = 0; i < 8; i++){
+            for (int j =0; j < 8; j++){
+                casillasVisuales[i][j].getChildren().clear();
             }
-
-            cargarFichas();
         }
-
+        cargarFichas();
+    }
 
     private void limpiarResaltado(){
 
@@ -225,9 +231,75 @@ public class TableroController {
         }
     }
 
+    private void actulizarLabels(){
+
+         int contadorArriba = 0;
+        int contadorAbajo = 0;
+        Color colorArriba = tablero.getColorArriba();
+        
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 8; j ++){
+                Ficha ficha = tablero.getFicha(i, j);
+                if(ficha != null){
+                    if(ficha.getColor() == colorArriba){
+                        contadorArriba ++;
+                    }else{
+                        contadorAbajo ++;
+                    }
+                }
+            }
+        }
+
+        colorJugadorArriba.setText(colorArriba.toString());
+        contadorJugadorArriba.setText(String.valueOf(contadorArriba));
+
+        Color colorAbajo = (colorArriba == Color.NEGRO) ? Color.BLANCO : Color.NEGRO;
+        colorJugadorAbajo.setText(colorAbajo.toString());
+        contadorJugadorAbajo.setText(String.valueOf(contadorAbajo));
+    }
+    
+    private void finPartida(){
+
+        Color colorGanador = reglas.finPartida();
+        
+        if(colorGanador != null){
+
+            try{
+                Stage stageActual = (Stage) tableroGrid.getScene().getWindow();
+                Navegacion.cambiarScene(stageActual, "/view/ganador.fxml");
+                 GanadorController controller = Navegacion.cambiarScene(stageActual, "/view/ganador.fxml");
+                controller.mostrarGanador(colorGanador);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
     @FXML
     private void nuevaPartida(ActionEvent event){
+        
+        try{
+            Stage stageActual = (Stage) menuOpciones.getScene().getWindow();
+            Navegacion.irANuevaPartida(stageActual);
+        }catch(IOException e){
 
+            e.printStackTrace();
+        }
     } 
+
+    @FXML
+    private void regresar(ActionEvent event){
+
+        try{
+
+            Stage stageActual = (Stage) menuOpciones.getScene().getWindow();
+            Navegacion.irAInicio(stageActual);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
+    }
+
+
 
 }
