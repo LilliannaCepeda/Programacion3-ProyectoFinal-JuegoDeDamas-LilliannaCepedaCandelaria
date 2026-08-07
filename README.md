@@ -13,6 +13,8 @@ El juego de damas se trata de ir capturando fichas moviendose a lo largo de un t
 
 **Instrucciones para compilar el programa:**
 
+En la terminal escribir el comando: java --module-path "C:\JavaFx\openjfx-25.0.3_windows-x64_bin-sdk\javafx-sdk-25.0.3\lib" --add-modules javafx.controls,javafx.fxml -cp bin App
+
 **Reglas implemetnadas en el juego:**
 
 -Las fichas se colocan en los cuadros oscuros del tablero con 3 hileras.
